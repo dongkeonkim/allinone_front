@@ -1,57 +1,52 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const BoardNew = () => {
   const [values, setValues] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
   });
 
-  const handleChange = event => {
-    const {name, value} = event.target;
-    setValues({...values, [name]: value});
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post('http://localhost:8080/board/create', values)
-      .then(data => {
+      .post("http://localhost:8080/board/create", values)
+      .then((data) => {
         console.log(data);
       })
-      .catch(data => console.log('error!'));
+      .catch((data) => console.log("error!"));
   };
 
   return (
     <>
-      <div className='border py-3'>
-        <div className='flex flex-row items-center mb-1'>
+      <div className="flex flex-col mb-2 w-full">
+        <form onSubmit={handleSubmit}>
           <input
-            className='font-KB text-black text-2xl w-full pb-2'
-            placeholder='제목을 입력해주세요.'
-            value=''
+            type="text"
+            name="title"
+            value={values.title}
+            className="rounded-lg w-4/12 border-transparent m-2 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            placeholder="제목을 입력하세요"
+            onChange={handleChange}
           />
-        </div>
-        <div className='flex'>
-          <select>
-            <option className='flex font-KR text-sm'>공지</option>
-            <option className='flex font-KR text-sm'>블로그</option>
-          </select>
-        </div>
-      </div>
-      <div className='py-5 w-full h-2/3 border'>
-        <textarea
-          className='font-KR w-full h-full block resize-none p-2'
-          placeholder='내용을 입력해주세요.'></textarea>
-      </div>
-      <div className='flex justify-center my-8'>
-        <button className='bg-blue-500 w-16 h-9 text-white font-black rounded mr-2 font-KR'>
-          등록
-        </button>
-        <button className='bg-gray-500 w-16 h-9 text-white font-black rounded mr-2 font-KR'>
-          취소
-        </button>
+          <textarea
+            className="block p-2.5 w-8/12 h-4/6 text-sm rounded-lg m-2 border border-gray-300"
+            placeholder="입력하세요"
+            name="content"
+            value={values.content}
+            onChange={handleChange}
+          ></textarea>
+          <div className="flex justify-end w-8/12">
+            <button className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200">
+              등록
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

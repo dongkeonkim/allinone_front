@@ -3,21 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Anton';
-  src: url('./assets/fonts/Anton-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'KB';
-  src: url('./assets/fonts/KB.ttf');
-}
-
-@font-face {
-  font-family: 'KR';
-  src: url('./assets/fonts/KR.ttf');
-}
-
-@font-face {
-  font-family: 'KEB';
-  src: url('./assets/fonts/KEB.ttf');
+  font-family: "Anton";
+  src: url("./assets/fonts/Anton-Regular.ttf");
 }
